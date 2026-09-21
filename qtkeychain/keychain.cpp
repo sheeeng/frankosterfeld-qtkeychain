@@ -190,9 +190,7 @@ void JobExecutor::startNextIfNoneRunning()
 
 void JobExecutor::jobDestroyed(QObject *object)
 {
-    Job *job = static_cast<Job *>(object);
-    Q_UNUSED(object) // for release mode
-    job->disconnect(this);
+    object->disconnect(this);
     m_jobRunning = false;
     startNextIfNoneRunning();
 }
